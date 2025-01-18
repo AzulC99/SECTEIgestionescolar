@@ -21,6 +21,35 @@ class Pages extends Controller {
         
         $this->view('pages/about', $data);
     }
+
+    public function aspirantes() {
+        $data = [
+            'title' => 'Aspirantes',
+            'description' => 'Login aspirantes'
+        ];
+        
+        $this->view('login/aspirantes', $data);
+    }
+
+    public function users() {
+        $data = [
+            'title' => 'Aspirantes',
+            'description' => 'Login aspirantes'
+        ];
+        
+        $this->view('login/users', $data);
+    }
+
+     public function registros() {
+        $data = [
+            'title' => 'Aspirantes',
+            'description' => 'Login aspirantes'
+        ];
+        
+        $this->view('login/registros', $data);
+    }
+
+    
 }
 
     

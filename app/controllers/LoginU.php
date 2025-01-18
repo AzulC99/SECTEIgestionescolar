@@ -4,21 +4,26 @@ class LoginU extends Controller {
         
     }
 
-    public function loginusers() {
+    public function users() {
         $data = [
-            'title' => 'Bienvenido',
-            'description' => 'Sistema de Gestión Escolar'
+            'title' => 'Usuarios',
+            'description' => 'Login usuarios'
         ];
         
-        $this->view('pages/index', $data);
+        $this->view('login/users', $data);
     }
 
-    public function loginaspirantes() {
+    public function aspirantes() {
         $data = [
-            'title' => 'Acerca de nosotros',
-            'description' => 'Información sobre el sistema'
+            'title' => 'Aspirantes',
+            'description' => 'Login aspirantes'
         ];
         
-        $this->view('pages/about', $data);
+        $this->view('login/aspirantes', $data);
     }
+
+    
+    
+
+
 }
