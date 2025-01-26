@@ -7,7 +7,7 @@ define('DB_NAME', '_YOUR_DBNAME_');
 // App Root
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
-define('URLROOT', 'http://localhost/SECTEIgestionescolar');
+define('URLROOT', 'http://www.secteigestionescolar.alchosting.xyz');
 // Site Name
 define('SITENAME', 'Sistema de Gestión Escolar');
 // App Version
