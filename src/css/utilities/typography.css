@@ -1,0 +1,13 @@
+@layer utilities {
+    .heading-1 {
+        @apply text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl;
+    }
+    
+    .heading-2 {
+        @apply text-3xl font-bold tracking-tight sm:text-4xl;
+    }
+    
+    .body-text {
+        @apply text-base text-gray-600;
+    }
+}
