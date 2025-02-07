@@ -1,9 +1,14 @@
 <?php
 define('DB_HOST', 'localhost');
-define('DB_USER', '_YOUR_USER_');
-define('DB_PASS', '_YOUR_PASS_');
-define('DB_NAME', '_YOUR_DBNAME_');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'escolar_sectei');
 
+// Constantes de Email
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_USER', 'tu@gmail.com');
+define('SMTP_PASS', 'tu_password');
+define('SMTP_PORT', 587);
 // App Root
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
@@ -12,3 +17,7 @@ define('URLROOT', 'http://localhost/SECTEIgestionescolar');
 define('SITENAME', 'Sistema de Gestión Escolar');
 // App Version
 define('APPVERSION', '1.0.0');
+
+// Directorios para archivos
+define('UPLOAD_PATH', APPROOT . '/uploads/');
+define('PDF_PATH', APPROOT . '/pdfs/');
