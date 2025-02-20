@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 function sanitizeInput($data) {
     $data = trim($data);
     $data = stripslashes($data);

@@ -1,66 +1,134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Escala de Grises</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
-        @keyframes slideIn {
-            0% {
-                transform: translateX(-50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        body {
+            background-color: #f8f9fa; /* Fondo gris claro */
         }
-        .form-slide-in {
-            animation: slideIn 1s ease-out;
+
+        .login-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-box {
+            background-color: #e9ecef; /* Fondo gris */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .login-box img {
+            width: 100px;
+            display: block;
+            margin: 0 auto 15px;
+        }
+
+        .input-group-text {
+            background-color: #dee2e6; /* Color gris claro para los iconos */
+            border: none;
+        }
+
+        .form-control {
+            background-color: #dee2e6; /* Input en gris claro */
+            border: none;
+        }
+
+        .form-control:focus {
+            background-color: #fff;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .btn-primary {
+            background-color: #6c757d; /* Gris oscuro */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a6268;
+        }
+
+        .side-image {
+            background: url('https://source.unsplash.com/800x800/?technology,abstract') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+        }
+
+        @media (max-width: 768px) {
+            .side-image {
+                display: none;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
+<body>
 
-    <div class="w-full max-w-4xl h-full flex bg-white rounded-lg shadow-xl overflow-hidden">
-        <!-- Formulario de Login -->
-        <div class="w-full sm:w-1/2 p-8 form-slide-in">
-            <!-- Logotipo centrado -->
-            <div class="flex justify-center mb-6">
-                <img src="https://via.placeholder.com/150" alt="Logotipo" class="w-24 h-24">
+<section class="vh-100" style="background-color: #9A616D;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
             </div>
-            
-            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Iniciar Sesión</h2>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
 
-            <form action="#" method="POST">
-                <!-- Campo de correo -->
-                <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="example@correo.com" required>
-                </div>
+                <form>
 
-                <!-- Campo de contraseña -->
-                <div class="mb-6">
-                    <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-                    <input type="password" id="password" name="password" class="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••" required>
-                </div>
+                <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <span class="h1 fw-bold mb-0">Logo</span>
+                  </div>
 
-                <!-- Botón de Iniciar sesión -->
-                <button type="submit" class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300">Iniciar sesión</button>
-            </form>
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
 
-            <!-- Enlace de "Olvidé mi contraseña" -->
-            <div class="text-center mt-4">
-                <a href="#" class="text-sm text-blue-600 hover:underline">¿Olvidaste tu contraseña?</a>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+
+                    <div class="d-grid mb-3">
+                        <button class="btn btn-dark btn-lg" type="submit">Ingresar</button>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="#" class="small text-muted">¿Olvidaste tu contraseña?</a>
+                        <p class="mt-2 text-secondary">¿No tienes cuenta? <a href="#" class="text-dark">Regístrate</a></p>
+                    </div>
+                </form>
+
+              </div>
             </div>
+          </div>
         </div>
-
-        <!-- Imagen de fondo -->
-        <div class="hidden sm:block w-1/2 h-full bg-blue-600 relative">
-            <img src="https://via.placeholder.com/800x800" alt="Imagen de fondo" class="w-full h-full object-cover opacity-80">
-        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+    <!-- Bootstrap 5 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
