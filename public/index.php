@@ -7,7 +7,7 @@ require_once '../app/Config/database.php';
 require_once '../app/Libraries/Core.php';
 require_once '../app/Libraries/Controller.php';
 require_once '../app/Libraries/Database.php';
-require_once '../app/Libraries/Model.php';
+
 
 // Iniciar la aplicación
 $init = new Core();

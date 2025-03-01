@@ -4,107 +4,86 @@
 <?php
 class User {
     private $db;
-
+    
     public function __construct() {
         $this->db = new Database;
     }
+    
+   
+    
+    public function loginWithEmail($email, $password) {
+    // Properly parameterize the query - both email and password check
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bind(':email', $email);
+        $row = $this->db->single();
+    
+    // If user found, compare the MD5 hash
+        if ($row) {
+            $stored_hash = $row->password;
+            $input_hash = md5($password);
+        
+            if ($input_hash === $stored_hash) {
+            return $row;
+            }
+        }
+    
+        return false;
+    }
 
+    // Login con CURP
+    public function loginWithCURP($curp, $password) {
+        $this->db->query('SELECT * FROM users WHERE curp = :curp');
+        $this->db->bind(':curp', $curp);
+        
+        $row = $this->db->single();
+        
+         // If user found, compare the MD5 hash
+        if ($row) {
+            $stored_hash = $row->password;
+            $input_hash = md5($password);
+        
+            if ($input_hash === $stored_hash) {
+            return $row;
+            }
+        }
+        
+        return false;
+    }
+    
+    // Registrar usuario
     public function register($data) {
-        $this->db->query('INSERT INTO users (username, email, password, role, is_active) VALUES (:username, :email, :password, :role, :is_active)');
-        $this->db->bind(':username', $data['username']);
+        $this->db->query('INSERT INTO users (name, email, curp, password) VALUES (:name, :email, :curp, :password)');
+        $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
+        $this->db->bind(':curp', $data['curp']);
         $this->db->bind(':password', password_hash($data['password'], PASSWORD_DEFAULT));
-        $this->db->bind(':role', $data['role']);
-        $this->db->bind(':is_active', 1);
-
+        
         return $this->db->execute();
     }
 
-    public function login($email, $password) {
-        $this->db->query('SELECT * FROM users WHERE email = :email');
-        $this->db->bind(':email', $email);
-
-        $row = $this->db->single();
-
-        if($row && password_verify($password, $row->password) && $row->is_active) {
-            return $row;
-        } else {
-            return false;
-        }
+    // Obtener usuarios por rol
+    public function getUsersByRole($role) {
+        $this->db->query('SELECT * FROM users WHERE role = :role');
+        $this->db->bind(':role', $role);
+        
+        return $this->db->resultSet();
     }
-
-    public function findUserByEmail($email) {
-        $this->db->query('SELECT * FROM users WHERE email = :email');
-        $this->db->bind(':email', $email);
-
-        $row = $this->db->single();
-
-        return ($row) ? true : false;
-    }
-
+    
+    // Obtener usuario por ID
     public function getUserById($id) {
         $this->db->query('SELECT * FROM users WHERE id = :id');
         $this->db->bind(':id', $id);
-
+        
         return $this->db->single();
     }
-
-    public function updateUserStatus($id, $status) {
-        $this->db->query('UPDATE users SET is_active = :status WHERE id = :id');
-        $this->db->bind(':id', $id);
-        $this->db->bind(':status', $status);
-
+    
+    // Actualizar rol de usuario
+    public function updateUserRole($userId, $newRole) {
+        $this->db->query('UPDATE users SET role = :role WHERE id = :id');
+        $this->db->bind(':role', $newRole);
+        $this->db->bind(':id', $userId);
+        
         return $this->db->execute();
     }
 }
-// class User {
-//     private $db;
-
-//     public function __construct() {
-//         $this->db = new Database;
-//     }
-
-//     public function register($data) {
-//         $this->db->query('INSERT INTO users (name, email, curp, password, role_id, is_active) 
-//                          VALUES (:name, :email, :curp, :password, :role_id, :is_active)');
-        
-//         $this->db->bind(':name', $data['name']);
-//         $this->db->bind(':email', $data['email']);
-//         $this->db->bind(':curp', $data['curp']);
-//         $this->db->bind(':password', password_hash($data['password'], PASSWORD_DEFAULT));
-//         $this->db->bind(':role_id', $data['role_id']);
-//         $this->db->bind(':is_active', 1);
-
-//         return $this->db->execute();
-//     }
-
-//     public function login($email, $password) {
-//         $this->db->query('SELECT * FROM users WHERE email = :email AND is_active = 1');
-//         $this->db->bind(':email', $email);
-        
-//         $row = $this->db->single();
-//         if($row && password_verify($password, $row->password)) {
-//             return $row;
-//         }
-//         return false;
-//     }
-
-//     public function findUserByEmail($email) {
-//         $this->db->query('SELECT * FROM users WHERE email = :email');
-//         $this->db->bind(':email', $email);
-//         return $this->db->single();
-//     }
-
-//     public function findUserByCURP($curp) {
-//         $this->db->query('SELECT * FROM users WHERE curp = :curp');
-//         $this->db->bind(':curp', $curp);
-//         return $this->db->single();
-//     }
-// }
-
-
-
-
-
-
-   
+?>

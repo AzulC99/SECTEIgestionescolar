@@ -1,26 +1,63 @@
 <?php
-class DirectorController extends Controller {
+class Director extends Controller {
+    
+    
     public function __construct() {
-        if (!Auth::isAuthorized('director')) {
-            redirect('auth/login');
+        // Verificar si el usuario tiene rol de admin
+        if(!isDirector()) {
+            redirect('pages/login');
         }
+        
+       
     }
     
-    public function dashboard() {
+    public function index() {
+        
+        
         $data = [
-            'title' => 'Director Dashboard',
-            'users' => $this->userModel->getAllUsers(),
-            'stats' => $this->statsModel->getAdminStats()
+            'title' => 'Panel de Administrador',
+            
         ];
-        $this->view('director/dashboard', $data);
+        
+        $this->view('director/index', $data);
     }
     
-    // public function manageUsers() {
-    //     // Lógica para gestionar usuarios
-    //     $this->view('admin/users/manage');
+    // public function users() {
+    //     // Administrar usuarios
+    //     $users = $this->userModel->getUsersByRole('user');
+        
+    //     $data = [
+    //         'title' => 'Gestión de Usuarios',
+    //         'users' => $users
+    //     ];
+        
+    //     $this->view('director/users', $data);
     // }
     
-    // public function systemSettings() {
-    //     $this->view('admin/settings');
-    // }
+    // public function changeUserRole($userId) {
+    //     if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         // Procesar formulario para cambiar rol
+    //         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+    //         $newRole = trim($_POST['role']);
+            
+    //         if($this->userModel->updateUserRole($userId, $newRole)) {
+    //             flash('user_message', 'Rol actualizado correctamente');
+    //             redirect('admin/users');
+    //         } else {
+    //             die('Algo salió mal');
+    //         }
+    //     } else {
+    //         // Obtener usuario
+    //         $user = $this->userModel->getUserById($userId);
+            
+    //         $data = [
+    //             'title' => 'Cambiar Rol',
+    //             'user' => $user
+    //         ];
+            
+    //         $this->view('admin/users/change_role', $data);
+    //     }
+    }
 }
+?>

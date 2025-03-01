@@ -1,9 +1,9 @@
 <?php
-class Coordinador extends Controller {
+class Aspirantes extends Controller {
     
     public function __construct() {
         // Verificar si el usuario tiene rol de usuario
-        if(!isCoordinador()) {
+        if(!isAspirante()) {
             redirect('pages/login');
         }
     }
@@ -13,7 +13,7 @@ class Coordinador extends Controller {
             'title' => 'Mi Panel de Usuario'
         ];
         
-        $this->view('coordinador/index', $data);
+        $this->view('aspirante/index', $data);
     }
     
     public function perfil() {
@@ -21,5 +21,5 @@ class Coordinador extends Controller {
             'title' => 'Mi Perfil'
         ];
         
-        $this->view('coordinador/perfil', $data);
+        $this->view('aspirante/perfil', $data);
     }

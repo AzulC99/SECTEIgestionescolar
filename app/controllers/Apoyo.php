@@ -1,26 +1,25 @@
 <?php
-class ApoyoController extends Controller {
+class Apoyo extends Controller {
+    
     public function __construct() {
-        if (!Auth::isAuthorized('apoyo')) {
-            redirect('auth/login');
+        // Verificar si el usuario tiene rol de usuario
+        if(!isApoyo()) {
+            redirect('pages/login');
         }
     }
     
-    public function dashboard() {
+    public function index() {
         $data = [
-            'title' => 'apoyo Dashboard',
-            'users' => $this->userModel->getAllUsers(),
-            'stats' => $this->statsModel->getAdminStats()
+            'title' => 'Mi Panel de Usuario'
         ];
-        $this->view('apoyo/dashboard', $data);
+        
+        $this->view('apoyo/index', $data);
     }
     
-    // public function manageUsers() {
-    //     // Lógica para gestionar usuarios
-    //     $this->view('admin/users/manage');
-    // }
-    
-    // public function systemSettings() {
-    //     $this->view('admin/settings');
-    // }
-}
+    public function perfil() {
+        $data = [
+            'title' => 'Mi Perfil'
+        ];
+        
+        $this->view('apoyo/perfil', $data);
+    }

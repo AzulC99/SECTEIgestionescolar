@@ -1,0 +1,8 @@
+php_value display_errors Off
+php_value mbstring.http_input auto
+php_value date.timezone America/Mexico_City
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteRule ^$ public/ [L]
+  RewriteRule (.*) public/$1 [L]
+</IfModule>
